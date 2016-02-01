@@ -22,18 +22,7 @@ public class RepositoryScanner implements Iterable<String>{
 	 */
 	public RepositoryScanner(String path) {
 		this.path = path;
-		File repertoireObjet = new File(path);
-		FileFilter filter = new FileFilter() {
-			
-			@Override
-			public boolean accept(File pathname) {
-				return pathname.isDirectory() && pathname.getName() != "info" && pathname.getName() != "pack";
-			}
-		};
-		
-		for (File sousDossier : repertoireObjet.listFiles(filter)) {
-			scanSubDirectory(sousDossier);
-		}
+		this.scan();
 	}
 	
 	
