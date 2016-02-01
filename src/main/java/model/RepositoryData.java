@@ -2,7 +2,6 @@ package model;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 
@@ -35,8 +34,7 @@ public class RepositoryData {
 		this.repository = builder.build();
 		
 		RepositoryScanner scanner = new RepositoryScanner(path + "/.git/objects");
-		scanner.scan();
-		for (String hash : scanner.getHashList()) {
+		for (String hash : scanner) {
 			GitObject object = GitObject.createGitObject(this.repository, hash);
 			objectTable.put(hash, object);
 		}

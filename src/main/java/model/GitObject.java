@@ -6,11 +6,9 @@ import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectLoader;
-import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 
-import com.sun.corba.se.impl.orbutil.closure.Constant;
-import com.sun.glass.ui.CommonDialogs.Type;
+
 
 public abstract class GitObject {
 	String hash;
