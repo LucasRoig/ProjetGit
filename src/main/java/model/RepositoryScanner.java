@@ -10,7 +10,6 @@ import java.util.Iterator;
  * @author Bruce Baumann
  * @author Ulysse Baumann
  * @author Lucas Roig
- *
  */
 public class RepositoryScanner implements Iterable<String>{
 	String path;
@@ -24,7 +23,6 @@ public class RepositoryScanner implements Iterable<String>{
 		this.path = path;
 		this.scan();
 	}
-	
 	
 	/**
 	 * Retourne la valeur actuelle de path
