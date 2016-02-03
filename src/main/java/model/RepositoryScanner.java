@@ -44,12 +44,13 @@ public class RepositoryScanner implements Iterable<String>{
 			
 			@Override
 			public boolean accept(File pathname) {
-				return pathname.isDirectory() && pathname.getName() != "info" && pathname.getName() != "pack";
+				return pathname.isDirectory() && !pathname.getName().contains("pack") && !pathname.getName().contains("info");
 			}
 		};
 		
 		for (File sousDossier : repertoireObjet.listFiles(filter)) {
 			scanSubDirectory(sousDossier);
+			
 		}
 	}
 	

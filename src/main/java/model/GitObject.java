@@ -36,6 +36,10 @@ public abstract class GitObject {
 		this.rawData = rawData;
 	}
 	
+	public GitObjectType getType() {
+		return this.type;
+	}
+	
 	public static GitObject createGitObject(Repository repository, String hash) throws MissingObjectException, IOException {
 		ObjectId id = repository.resolve(hash);
 		ObjectLoader loader = repository.open(id);
