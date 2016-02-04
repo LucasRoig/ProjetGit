@@ -19,7 +19,7 @@ public class RepositoryScannerTest {
 
 	@Test
 	public void test() {
-		File file = new File("src/test/ressources/RepertoireTestGit/.git/objects");
+		File file = new File("src/test/ressources/objects");
 		RepositoryScanner repositoryScanner = new RepositoryScanner(file);
 		ArrayList<String> expectedList = new ArrayList<>();
 		expectedList.add("5d2a619a227dd05e3151e6bedb1bed53cfd37a16");
