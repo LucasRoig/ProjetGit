@@ -13,3 +13,9 @@ Ce projet nécessite java 8.
 ```
 
 * Importer le projet dans Eclipse.
+
+# Tests Unitaires
+Pour lancer les tests unitaires, lancer dans un terminal :
+```
+ mvn test
+```
