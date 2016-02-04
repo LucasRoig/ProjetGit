@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -12,20 +13,19 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView fx:id="objectTable" layoutX="47.0" layoutY="14.0" prefHeight="398.0" prefWidth="294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="objectTable" prefHeight="398.0" prefWidth="294.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0">
                     <columns>
-                      <TableColumn fx:id="hashColumn" maxWidth="150.0" minWidth="0.0" prefWidth="150.0" text="Clé" />
-                      <TableColumn fx:id="typeColumn" maxWidth="150.0" minWidth="0.0" prefWidth="150.0" text="Type" />
+                      <TableColumn fx:id="hashColumn" maxWidth="500.0" minWidth="150.0" prefWidth="150.0" text="Clé" />
+                      <TableColumn fx:id="typeColumn" maxWidth="500.0" minWidth="150.0" prefWidth="150.0" text="Type" />
                     </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
                   </TableView>
+                  <Label prefHeight="30.0" prefWidth="87.0" text="Rechercher" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <TextField fx:id="filterTextField" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TextArea fx:id="dataText" prefHeight="362.0" prefWidth="294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <TextArea fx:id="dataText" editable="false" prefHeight="362.0" prefWidth="294.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>

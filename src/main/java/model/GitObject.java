@@ -42,7 +42,6 @@ public abstract class GitObject {
 	
 	public static GitObject createGitObject(Repository repository, String hash) throws MissingObjectException, IOException {
 		ObjectId id = repository.resolve(hash);
-		System.out.println(id);
 		ObjectLoader loader = repository.open(id);
 		GitObject object = null;
 		switch (loader.getType()) {

@@ -38,7 +38,6 @@ public class RepositoryData {
 		
 		RepositoryScanner scanner = new RepositoryScanner(directory.getAbsolutePath() + "/.git/objects");
 		for (String hash : scanner) {
-			System.out.println(hash);
 			GitObject object = GitObject.createGitObject(this.repository, hash);
 			objectTable.put(hash, object);
 		}
