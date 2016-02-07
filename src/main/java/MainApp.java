@@ -17,19 +17,8 @@ public class MainApp extends Application {
 	
 	private Stage primaryStage;
 	private BorderPane mainWindow;
-	private ObservableList<GitObject> objectList = FXCollections.observableArrayList();
 
 	public MainApp() {
-		try {
-			RepositoryData rep = new RepositoryData("/Users/PercyStrobb/jgit-cookbook");
-			Collection<GitObject> objects = rep.getObjectList();
-			for (GitObject i : objects) {
-				objectList.add(i);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 	}
 	
@@ -39,9 +28,7 @@ public class MainApp extends Application {
 		this.primaryStage.setTitle("Projet Git");
 		this.primaryStage.show();
 		
-		initMainWindow();
-		showObjectsView();
-		
+		initMainWindow();	
 	}
 	
 	public void initMainWindow() {
@@ -55,28 +42,6 @@ public class MainApp extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-		
-	}
-	
-	private void showObjectsView() {
-		try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("fxml/ObjectsView.fxml"));
-            AnchorPane objectsView = (AnchorPane) loader.load();
-            mainWindow.setCenter(objectsView);
-            ObjectsViewController controller = loader.getController();
-            controller.setMainApp(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-	public Stage getPrimaryStage() {
-		return primaryStage;
-	}
-	
-	public ObservableList<GitObject> getObjectList() {
-		return objectList;
 		
 	}
 

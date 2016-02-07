@@ -10,30 +10,28 @@ import java.util.Iterator;
  * @author Bruce Baumann
  * @author Ulysse Baumann
  * @author Lucas Roig
- *
  */
 public class RepositoryScanner implements Iterable<String>{
-	String path;
-	ArrayList<String> hashList = new ArrayList<>();
+	private String path;
+	private ArrayList<String> hashList = new ArrayList<>();
 	
 	/**
 	 * Instancie un objet RepositoryScanner et initialise la variable path
 	 * @param path  Le chemin de du répertoire objects à scanner
 	 */
 	public RepositoryScanner(String path) {
-		this.path = path;
+		this(new File(path));
+	}
+	
+	public RepositoryScanner(File file) {
+		this.path = file.getAbsolutePath();
 		this.scan();
 	}
 	
-	
-	/**
-	 * Retourne la valeur actuelle de path
-	 * @return path
-	 */
-	public String getPath() {
-		return this.path;
+	@Override
+	public Iterator<String> iterator() {
+		return hashList.iterator();
 	}
-	
 	
 	/**
 	 * Scanne le dossier ciblé par la variable path et stocke les hashs obtenus dans la liste hashList
@@ -70,10 +68,5 @@ public class RepositoryScanner implements Iterable<String>{
 		for (File gitObject : directory.listFiles(filter)) {
 			hashList.add(directory.getName() + gitObject.getName());
 		}
-	}
-
-	@Override
-	public Iterator<String> iterator() {
-		return hashList.iterator();
 	}
 }

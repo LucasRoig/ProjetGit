@@ -8,7 +8,6 @@ import java.util.Hashtable;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryBuilder;
 
-
 /**
  * Stock les données du repository
  * @author Bruce Baumann
@@ -28,12 +27,16 @@ public class RepositoryData {
 	 * @throws IOException 
 	 */
 	public RepositoryData(String path) throws IOException {
+		this(new File(path));
+	}
+
+	public RepositoryData(File directory) throws IOException{
 		RepositoryBuilder builder = new RepositoryBuilder();
 		builder.setMustExist(true);
-		builder.setGitDir(new File(path + "/.git"));
+		builder.setGitDir(new File(directory.getAbsolutePath() + "/.git"));
 		this.repository = builder.build();
 		
-		RepositoryScanner scanner = new RepositoryScanner(path + "/.git/objects");
+		RepositoryScanner scanner = new RepositoryScanner(directory.getAbsolutePath() + "/.git/objects");
 		for (String hash : scanner) {
 			GitObject object = GitObject.createGitObject(this.repository, hash);
 			objectTable.put(hash, object);
@@ -57,5 +60,4 @@ public class RepositoryData {
 	public  Collection<GitObject> getObjectList(){
 		return objectTable.values();
 	}
-	
 }
