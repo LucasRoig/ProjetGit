@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TagDataController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="ID de l'objet" />
+            <Label fx:id="objectID" layoutX="100.0" text="ID" />
+            <Label layoutY="23.0" text="Type de l'objet" />
+            <Label fx:id="objectType" layoutX="100.0" layoutY="23.0" text="Type" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
