@@ -20,12 +20,16 @@ public class RepositoryScanner implements Iterable<String>{
 	 * @param path  Le chemin de du répertoire objects à scanner
 	 */
 	public RepositoryScanner(String path) {
+		
 		this(new File(path));
+		
 	}
 	
 	public RepositoryScanner(File file) {
 		this.path = file.getAbsolutePath();
+		
 		this.scan();
+		
 	}
 	
 	@Override
@@ -37,7 +41,9 @@ public class RepositoryScanner implements Iterable<String>{
 	 * Scanne le dossier ciblé par la variable path et stocke les hashs obtenus dans la liste hashList
 	 */
 	private void scan(){
+		
 		File repertoireObjet = new File(path);
+		
 		FileFilter filter = new FileFilter() {
 			
 			@Override
@@ -45,10 +51,8 @@ public class RepositoryScanner implements Iterable<String>{
 				return pathname.isDirectory() && !pathname.getName().contains("pack") && !pathname.getName().contains("info");
 			}
 		};
-		
 		for (File sousDossier : repertoireObjet.listFiles(filter)) {
 			scanSubDirectory(sousDossier);
-			
 		}
 	}
 	

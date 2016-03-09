@@ -1,7 +1,6 @@
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -10,10 +9,9 @@ import model.RepositoryScanner;
 
 /**
  * 
- * @author lucas
- *Classe de test pour RepositoryScanner
- *Ici on vérifie simplement que le RepositoryScanner récupère la bonne liste de
- *valeurs de hash.
+ * @author Lucas Roig Classe de test pour RepositoryScanner Ici on vérifie
+ *         simplement que le RepositoryScanner récupère la bonne liste de
+ *         valeurs de hash.
  */
 public class RepositoryScannerTest {
 
@@ -29,6 +27,6 @@ public class RepositoryScannerTest {
 		for (String string : repositoryScanner) {
 			actual.add(string);
 		}
-		assertTrue("Test du contenu du RepositoryScanner",expectedList.equals(actual));
+		assertTrue("Test du contenu du RepositoryScanner", expectedList.equals(actual));
 	}
 }
