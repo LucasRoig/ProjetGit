@@ -1,14 +1,19 @@
+import java.io.IOException;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import model.GitObject;
+import model.ObjectDataFactory;
 import model.RepositoryData;
 
 public class ObjectsViewController {
@@ -26,9 +31,11 @@ public class ObjectsViewController {
 	private TextArea dataText;
 	@FXML
 	private TextField filterTextField;
+	@FXML
+	private BorderPane dataPane;
 
 	@FXML
-	private void initialize() {
+	private void initialize() throws IOException {
 		FilteredList<GitObject> filteredList = new FilteredList<>(this.objectList, p -> true);
 
 		filterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -41,11 +48,14 @@ public class ObjectsViewController {
 		sortedList.comparatorProperty().bind(objectTable.comparatorProperty());
 		objectTable.setItems(sortedList);
 		hashColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHash()));
-		typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));
 
-		objectTable.getSelectionModel().selectedItemProperty()
-		.addListener((observable, oldValue, newValue) -> showRawData(newValue));
-		showRawData(null);
+        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));
+        
+        objectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showRawData(newValue));
+        showRawData(null);
+        
+        objectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> openObjectData(newValue));
+        openObjectData(null);
 	}
 
 	private void showRawData(GitObject object) {
@@ -60,5 +70,25 @@ public class ObjectsViewController {
 		this.repository = repository;
 		this.objectList.clear();
 		this.objectList.addAll(this.repository.getObjectList());
+	}
+	
+	private void openObjectData(GitObject object) {
+		if (object == null) {
+			this.dataPane.setCenter(new AnchorPane());
+		}
+		else {
+			dataPane.getChildren().clear();
+			String dataPath = new String();
+			dataPath = new ObjectDataFactory().getObjectData(object);
+			FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(MainApp.class.getResource(dataPath));
+	        try {
+				AnchorPane objectData = (AnchorPane) loader.load();
+				this.dataPane.setCenter(objectData);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 }
