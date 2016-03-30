@@ -9,10 +9,18 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="ID de l'objet" />
-            <Label fx:id="objectID" layoutX="100.0" text="ID" />
-            <Label layoutY="23.0" text="Type de l'objet" />
-            <Label fx:id="objectType" layoutX="100.0" layoutY="23.0" text="Type" />
+            <Label text="ID de l'objet :" />
+            <Label fx:id="objectID" layoutX="105.0" text="ID" />
+            <Label layoutY="23.0" text="Type de l'objet :" />
+            <Label fx:id="objectType" layoutX="105.0" layoutY="23.0" text="Type" />
+            <Label layoutY="46.0" text="Nom du Tag :" />
+            <Label fx:id="tagName" layoutX="105.0" layoutY="46.0" text="Nom" />
+            <Label layoutY="92.0" text="Tagger :" />
+            <Label fx:id="tagTagger" layoutX="105.0" layoutY="92.0" text="Tagger" />
+            <Label layoutY="115.0" text="eMail :" />
+            <Label fx:id="tagMail" layoutX="105.0" layoutY="115.0" text="\@" />
+            <Label layoutY="138.0" text="Date :" />
+            <Label fx:id="tagDate" layoutX="105.0" layoutY="138.0" text="Date" />
          </children>
       </Pane>
    </children>
