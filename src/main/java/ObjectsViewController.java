@@ -13,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import model.GitObject;
-import model.ObjectDataFactory;
 import model.RepositoryData;
 
 public class ObjectsViewController {
@@ -78,17 +77,7 @@ public class ObjectsViewController {
 		}
 		else {
 			dataPane.getChildren().clear();
-			String dataPath = new String();
-			dataPath = new ObjectDataFactory().getObjectData(object);
-			FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(MainApp.class.getResource(dataPath));
-	        try {
-				AnchorPane objectData = (AnchorPane) loader.load();
-				this.dataPane.setCenter(objectData);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			dataPane.setCenter(ObjectDataFactory.getObjectData(object));
 		}
 	}
 }
