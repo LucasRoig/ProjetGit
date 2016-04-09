@@ -74,7 +74,7 @@ public class RepositoryScanner implements Iterable<String>{
 	}
 	
 	/**
-	 * Ajoute les hash des GitObjects étants dans des packs à la liste hashList.
+	 * Ajoute les hash des GitObjects ï¿½tants dans des packs ï¿½ la liste hashList.
 	 */
 	private void readPackFiles(){
 		File repertoirePack = new File(path+"/pack");

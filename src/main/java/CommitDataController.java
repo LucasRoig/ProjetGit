@@ -1,10 +1,14 @@
+
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import model.GitObject;
 import model.Commit;
@@ -26,49 +30,83 @@ public class CommitDataController extends ObjectDataController{
 	Label authorDate;
 	
 	@FXML
-	Label commitCommiter;
+	Label commitCommitter;
 	
 	@FXML
-	Label commiterDate;
+	Label committerDate;
 	
 	@FXML
 	private void initialize() {
+		treeId.setUnderline(true);
 		
+		treeId.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent enter) {
+				MainApp.getScene().setCursor(Cursor.HAND);
+			}
+		});
+		
+		treeId.setOnMouseExited(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent enter) {
+				MainApp.getScene().setCursor(Cursor.DEFAULT);
+			}
+		});
+		
+		parentsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent click) {
+
+		        if (click.getClickCount() == 2) {
+		        	MainWindowController.getObjectsViewController().setSelectedObject(parentsList.getSelectionModel().getSelectedItem());
+		        }
+			}
+		});
+		
+		treeId.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent click) {
+
+		        if (click.getClickCount() == 2) {
+		        	MainWindowController.getObjectsViewController().setSelectedObject(treeId.getText());
+		        }
+			}
+		});
 	}
 	
 	public void setDataContent(GitObject object){
 		setTreeId(((Commit) object).getTreeId());
 		setParentsList(((Commit) object).getParentsList());
-		setCommitAuthor(((Commit) object).getCommitAuthor());
+		String author = (((Commit) object).getCommitAuthor() + " : " + ((Commit) object).getAuthorMail());
+		setCommitAuthor(author);
 		setAuthorDate(((Commit) object).getAuthorDate());
-		setCommitCommiter(((Commit) object).getCommitCommiter());
-		setCommiterDate(((Commit) object).getCommiterDate());
+		String committer = (((Commit) object).getCommitCommitter() + " : " + ((Commit) object).getCommitterMail());
+		setCommitCommitter(committer);
+		setCommitterDate(((Commit) object).getCommitterDate());
 	}
 	
-	public void setTreeId(String obj_hex_id){
-		this.treeId.setText(obj_hex_id);
+	public void setTreeId(String chaine){
+		this.treeId.setText(chaine);
 	}
 	
-	public void setParentsList(ArrayList<String> obj_hex_ids){
+	public void setParentsList(ArrayList<String> listeChaines){
 		ObservableList<String> observableList = FXCollections.observableArrayList();
-		observableList.setAll(obj_hex_ids);
+		observableList.setAll(listeChaines);
         parentsList.setItems(observableList);
 	}
 	
-	public void setCommitAuthor(String safe_name){
-		this.commitAuthor.setText(safe_name);
+	public void setCommitAuthor(String chaine){
+		this.commitAuthor.setText(chaine);
 	}
 	
-	public void setAuthorDate(String git_date){
-		this.authorDate.setText(gitDateToString(git_date));
+	public void setAuthorDate(String chaine){
+		this.authorDate.setText(gitDateToString(chaine));
 	}
 	
-	public void setCommitCommiter(String safe_name){
-		this.commitCommiter.setText(safe_name);
+	public void setCommitCommitter(String chaine){
+		this.commitCommitter.setText(chaine);
 	}
 	
-	public void setCommiterDate(String git_date){
-		this.commiterDate.setText(gitDateToString(git_date));
+	public void setCommitterDate(String chaine){
+		this.committerDate.setText(gitDateToString(chaine));
 	}
+	
+	
 
 }

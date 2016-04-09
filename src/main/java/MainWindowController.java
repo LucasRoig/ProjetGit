@@ -24,6 +24,7 @@ import model.RepositoryData;
 public class MainWindowController {
 	private RepositoryData repository;
 	private Stage mainStage;
+	static private ObjectsViewController objectsViewController;
 	@FXML
 	BorderPane mainPane;
 	@FXML
@@ -63,7 +64,12 @@ public class MainWindowController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(MainApp.class.getResource("fxml/ObjectsView.fxml"));
 		AnchorPane objectsView = (AnchorPane) loader.load();
-		((ObjectsViewController) (loader.getController())).setRepository(this.repository);
+		objectsViewController = ((ObjectsViewController) (loader.getController()));
+		objectsViewController.setRepository(repository);
 		this.mainPane.setCenter(objectsView);
+	}
+	
+	static public ObjectsViewController getObjectsViewController(){
+		return objectsViewController;
 	}
 }

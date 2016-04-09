@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -79,5 +78,10 @@ public class ObjectsViewController {
 			dataPane.getChildren().clear();
 			dataPane.setCenter(ObjectDataFactory.getObjectData(object));
 		}
+	}
+	
+	public void setSelectedObject(String objectId){
+		GitObject object = repository.getObjectByHash(objectId);
+		objectTable.getSelectionModel().select(object);
 	}
 }

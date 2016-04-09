@@ -1,6 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 public class Tree extends GitObject{
+	
+	ArrayList<String> objectsName;
+	ArrayList<String> objectsId;
+	
 	public Tree(String hash, byte[] b) {
 		super(hash, "");
 		this.type = GitObjectType.Tree;
@@ -33,6 +40,16 @@ public class Tree extends GitObject{
 			}
 		}
 		this.setRawData(buffer.toString());
+	}
+	
+	public void setDataContent(String rawData){
+		Pattern lines = Pattern.compile("\n");
+		String[] data = lines.split(rawData);
+		
+		for (int i = 0; i < data.length; i++) {
+			
+		}
+		
 	}
 
 }

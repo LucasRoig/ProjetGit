@@ -10,6 +10,7 @@ public class MainApp extends Application {
 
 	private Stage primaryStage;
 	private BorderPane mainWindow;
+	static private Scene scene;
 
 	public MainApp() {
 
@@ -29,7 +30,7 @@ public class MainApp extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("fxml/MainWindow.fxml"));
 			mainWindow = (BorderPane) loader.load();
-			Scene scene = new Scene(mainWindow);
+			scene = new Scene(mainWindow);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (IOException e) {
@@ -40,5 +41,9 @@ public class MainApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	static public Scene getScene(){
+		return scene;
 	}
 }
