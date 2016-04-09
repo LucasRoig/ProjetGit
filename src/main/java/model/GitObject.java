@@ -6,10 +6,12 @@ import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectLoader;
 import org.eclipse.jgit.lib.Repository;
+import org.eclipse.jgit.revwalk.RevCommit;
 
 
 
 public abstract class GitObject {
+	GitObject parent;
 	String hash;
 	String rawData;
 	protected GitObjectType type;
@@ -19,7 +21,13 @@ public abstract class GitObject {
 		this.rawData = rawData;
 	}
 
-
+	public GitObject getParent() {
+		return parent;
+	}
+	
+	public void setParent(GitObject parent) {
+		this.parent = parent;
+	}
 
 	public String getHash() {
 		return hash;
