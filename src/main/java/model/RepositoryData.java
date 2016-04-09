@@ -41,8 +41,11 @@ public class RepositoryData {
 
 		RepositoryScanner scanner = new RepositoryScanner(directory.getAbsolutePath() + "/.git/objects");
 		for (String hash : scanner) {
-			GitObject object = GitObject.createGitObject(this.repository, hash);
+			GitObject object = GitObject.createGitObject(this, hash);
 			objectTable.put(hash, object);
+		}
+		for (GitObject object : this.getObjectList()) {
+			object.setDataContent();
 		}
 	}
 
@@ -64,5 +67,13 @@ public class RepositoryData {
 	 */
 	public Collection<GitObject> getObjectList() {
 		return objectTable.values();
+	}
+	
+	/**
+	 * Retourne l'objet Repository de Jgit auquel correspond ce RepositoryData
+	 * @return
+	 */
+	public Repository getRepository() {
+		return repository;
 	}
 }

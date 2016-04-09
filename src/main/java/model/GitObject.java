@@ -13,12 +13,24 @@ public abstract class GitObject {
 	String hash;
 	String rawData;
 	protected GitObjectType type;
+	private RepositoryData repositoryData;
+	
+	
 
 	protected GitObject(String hash, String rawData) {
 		this.hash = hash;
 		this.rawData = rawData;
 	}
-
+	
+	abstract public void setDataContent();
+	
+	public void setRepositoryData(RepositoryData repositoryData) {
+		this.repositoryData = repositoryData;
+	}
+	
+	public RepositoryData getRepositoryData() {
+		return repositoryData;
+	}
 	public GitObject getParent() {
 		return parent;
 	}
@@ -47,8 +59,9 @@ public abstract class GitObject {
 		return this.type;
 	}
 
-	public static GitObject createGitObject(Repository repository, String hash)
+	public static GitObject createGitObject(RepositoryData repositoryData, String hash)
 			throws MissingObjectException, IOException {
+		Repository repository = repositoryData.getRepository();
 		ObjectId id = repository.resolve(hash);
 		ObjectLoader loader = repository.open(id);
 		GitObject object = null;
@@ -66,6 +79,7 @@ public abstract class GitObject {
 			object = new Tag(hash, new String(loader.getCachedBytes()));
 			break;
 		}
+		object.setRepositoryData(repositoryData);
 		return object;
 	}
 }

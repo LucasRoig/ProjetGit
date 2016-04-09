@@ -14,7 +14,6 @@ public class Tag extends GitObject {
 	public Tag(String hash, String rawData) {
 		super(hash, rawData);
 		this.type = GitObjectType.Tag;
-		this.setDataContent(this.rawData);
 	}
 
 	public String getObjectId() {
@@ -41,9 +40,9 @@ public class Tag extends GitObject {
 		return tagDate;
 	}
 
-	public void setDataContent(String rawData) {
+	public void setDataContent() {
 		Pattern lines = Pattern.compile("\n");
-		String[] data = lines.split(rawData);
+		String[] data = lines.split(this.rawData);
 
 		objectId = data[0].substring(7);
 

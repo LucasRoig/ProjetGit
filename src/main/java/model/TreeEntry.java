@@ -14,8 +14,8 @@ public class TreeEntry {
 	public TreeEntry(String entryLine) {
 		int firstSpace = entryLine.indexOf(32);
 		int secondSpace = entryLine.indexOf(32, firstSpace + 1);
-		hash = entryLine.substring(firstSpace, secondSpace);
-		name = entryLine.substring(secondSpace);
+		name = entryLine.substring(firstSpace+1, secondSpace);
+		hash = entryLine.substring(secondSpace+1);
 	}
 
 	public String getHash() {

@@ -18,7 +18,6 @@ public class Commit extends GitObject {
 	public Commit(String hash, String rawData) {
 		super(hash, rawData);
 		this.type = GitObjectType.Commit;
-		this.setDataContent(rawData);
 	}
 
 	public String getTreeId() {
@@ -53,9 +52,9 @@ public class Commit extends GitObject {
 		return committerDate;
 	}
 
-	public void setDataContent(String rawData) {
+	public void setDataContent() {
 		Pattern lines = Pattern.compile("\n");
-		String[] data = lines.split(rawData);
+		String[] data = lines.split(this.rawData);
 
 		treeId = data[0].substring(5);
 
