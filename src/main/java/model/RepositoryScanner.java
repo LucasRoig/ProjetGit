@@ -94,7 +94,7 @@ public class RepositoryScanner implements Iterable<String> {
 			}
 		};
 		for (File pack : repertoirePack.listFiles(filter)) {
-			PackFile p = new PackFile(pack, 0);//TODO : c'est quoi extension ?
+			PackFile p = new PackFile(pack, 0);// TODO : c'est quoi extension ?
 			for (MutableEntry mutableEntry : p) {
 				hashList.add(mutableEntry.toObjectId().getName());
 			}

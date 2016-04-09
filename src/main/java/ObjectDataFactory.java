@@ -1,5 +1,4 @@
 
-
 import java.io.IOException;
 
 import javafx.fxml.FXMLLoader;
@@ -12,13 +11,12 @@ public class ObjectDataFactory {
 	static String blobDataPath = "fxml/BlobData.fxml";
 	static String tagDataPath = "fxml/TagData.fxml";
 
-	public static AnchorPane getObjectData(GitObject object){
+	public static AnchorPane getObjectData(GitObject object) {
 		String path = new String();
-		if (object == null){
+		if (object == null) {
 			return null;
-		}
-		else{
-			switch(object.getType()){
+		} else {
+			switch (object.getType()) {
 			case Commit:
 				path = commitDataPath;
 				break;

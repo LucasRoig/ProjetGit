@@ -5,95 +5,107 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Commit extends GitObject {
-	
+
 	String treeId;
 	ArrayList<String> parentsList;
 	String commitAuthor;
+	String authorMail;
 	String authorDate;
-	String commitCommiter;
-	String commiterDate;
-	
+	String commitCommitter;
+	String committerMail;
+	String committerDate;
+
 	public Commit(String hash, String rawData) {
 		super(hash, rawData);
 		this.type = GitObjectType.Commit;
 		this.setDataContent(rawData);
 	}
-	
+
 	public String getTreeId() {
 		return treeId;
 	}
-	
+
 	public ArrayList<String> getParentsList() {
 		return parentsList;
 	}
-	
+
 	public String getCommitAuthor() {
 		return commitAuthor;
 	}
-	
+
+	public String getAuthorMail() {
+		return authorMail;
+	}
+
 	public String getAuthorDate() {
 		return authorDate;
 	}
-	
-	public String getCommitCommiter() {
-		return commitCommiter;
+
+	public String getCommitCommitter() {
+		return commitCommitter;
 	}
-	
-	public String getCommiterDate() {
-		return commiterDate;
+
+	public String getCommitterMail() {
+		return committerMail;
 	}
-	
-	public void setDataContent(String rawData){
+
+	public String getCommitterDate() {
+		return committerDate;
+	}
+
+	public void setDataContent(String rawData) {
 		Pattern lines = Pattern.compile("\n");
 		String[] data = lines.split(rawData);
-		
+
 		treeId = data[0].substring(5);
-		
+
 		int i = 1;
 		parentsList = new ArrayList<String>();
-		while(data[i].contains("parent")){
+		while (data[i].contains("parent")) {
 			parentsList.add(data[i].substring(7));
 			i += 1;
 		}
-		
-		Pattern authorName = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");
+
+		Pattern authorName = Pattern.compile("author .+ <");
 		Matcher aName = authorName.matcher(data[i]);
-		while(aName.find()) {
-			commitAuthor = aName.group();
+		while (aName.find()) {
+			this.commitAuthor = aName.group().substring(7, aName.group().length() - 2);
 		}
-		
-		Pattern authorMail = Pattern.compile("<.*>");;
+
+		Pattern authorMail = Pattern.compile("<.*>");
+		;
 		Matcher aMail = authorMail.matcher(data[i]);
-		while(aMail.find()) {
-			commitAuthor += " : " + aMail.group().substring(1, aMail.group().length()-1);
+		while (aMail.find()) {
+			this.authorMail = aMail.group().substring(1, aMail.group().length() - 1);
 		}
-		
+
 		Pattern authorDate = Pattern.compile("[0-9]* \\+[0-9]*");
-    	Matcher aDate = authorDate.matcher(data[i]);
-    	while(aDate.find()) {
-    		this.authorDate = aDate.group();
-    	}
-		
+		Matcher aDate = authorDate.matcher(data[i]);
+		while (aDate.find()) {
+			this.authorDate = aDate.group();
+		}
+
 		i += 1;
-		
-		Pattern commiterName = Pattern.compile("[A-Z][a-z]+ [A-Z][a-z]+");
+
+		Pattern commiterName = Pattern.compile("committer .+ <");
 		Matcher cName = commiterName.matcher(data[i]);
-		while(cName.find()) {
-			commitCommiter = cName.group();
+		while (cName.find()) {
+			commitCommitter = cName.group().substring(10, cName.group().length() - 2);
 		}
-		
-		Pattern commiterMail = Pattern.compile("<.*>");;
+
+		Pattern commiterMail = Pattern.compile("<.*>");
+		;
 		Matcher cMail = commiterMail.matcher(data[i]);
-		while(cMail.find()) {
-			commitCommiter += " : " + cMail.group().substring(1, cMail.group().length()-1);
+		while (cMail.find()) {
+			this.committerMail = cMail.group().substring(1, cMail.group().length() - 1);
 		}
-		
+
 		Pattern commiterDate = Pattern.compile("[0-9]* \\+[0-9]*");
-    	Matcher cDate = commiterDate.matcher(data[i]);
-    	while(cDate.find()) {
-    		this.commiterDate = cDate.group();
-    	}
-		
+		Matcher cDate = commiterDate.matcher(data[i]);
+		while (cDate.find()) {
+			this.committerDate = cDate.group();
+		}
+
 	}
 
 }

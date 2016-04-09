@@ -1,4 +1,5 @@
 package model;
+
 import java.io.IOException;
 
 import org.eclipse.jgit.errors.MissingObjectException;
@@ -6,9 +7,6 @@ import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectLoader;
 import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.revwalk.RevCommit;
-
-
 
 public abstract class GitObject {
 	GitObject parent;
@@ -24,7 +22,7 @@ public abstract class GitObject {
 	public GitObject getParent() {
 		return parent;
 	}
-	
+
 	public void setParent(GitObject parent) {
 		this.parent = parent;
 	}
@@ -49,7 +47,8 @@ public abstract class GitObject {
 		return this.type;
 	}
 
-	public static GitObject createGitObject(Repository repository, String hash) throws MissingObjectException, IOException {
+	public static GitObject createGitObject(Repository repository, String hash)
+			throws MissingObjectException, IOException {
 		ObjectId id = repository.resolve(hash);
 		ObjectLoader loader = repository.open(id);
 		GitObject object = null;

@@ -1,11 +1,11 @@
 import java.io.IOException;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -48,13 +48,15 @@ public class ObjectsViewController {
 		objectTable.setItems(sortedList);
 		hashColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHash()));
 
-        typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));
-        
-        objectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> showRawData(newValue));
-        showRawData(null);
-        
-        objectTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> openObjectData(newValue));
-        openObjectData(null);
+		typeColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().toString()));
+
+		objectTable.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> showRawData(newValue));
+		showRawData(null);
+
+		objectTable.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> openObjectData(newValue));
+		openObjectData(null);
 	}
 
 	private void showRawData(GitObject object) {
@@ -70,14 +72,18 @@ public class ObjectsViewController {
 		this.objectList.clear();
 		this.objectList.addAll(this.repository.getObjectList());
 	}
-	
+
 	private void openObjectData(GitObject object) {
 		if (object == null) {
 			this.dataPane.setCenter(new AnchorPane());
-		}
-		else {
+		} else {
 			dataPane.getChildren().clear();
 			dataPane.setCenter(ObjectDataFactory.getObjectData(object));
 		}
+	}
+
+	public void setSelectedObject(String objectId) {
+		GitObject object = repository.getObjectByHash(objectId);
+		objectTable.getSelectionModel().select(object);
 	}
 }

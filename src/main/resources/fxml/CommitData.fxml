@@ -9,7 +9,7 @@
    <children>
       <GridPane prefHeight="210.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="90.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="110.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
@@ -29,9 +29,9 @@
             <ListView fx:id="parentsList" fixedCellSize="23.0" prefHeight="69.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="6" />
             <Label fx:id="commitAuthor" text="author" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label fx:id="authorDate" text="author date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Commiter :" GridPane.rowIndex="3" />
-            <Label fx:id="commitCommiter" text="commiter" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="commiterDate" text="commiter date" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Committer :" GridPane.rowIndex="3" />
+            <Label fx:id="commitCommitter" text="commiter" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="committerDate" text="commiter date" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
    </children>

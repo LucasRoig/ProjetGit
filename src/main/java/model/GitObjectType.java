@@ -1,5 +1,5 @@
 package model;
 
 public enum GitObjectType {
-Commit, Tree, Blob, Tag;
+	Commit, Tree, Blob, Tag;
 }

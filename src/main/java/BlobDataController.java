@@ -1,18 +1,21 @@
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import model.GitObject;
 
-public class BlobDataController extends ObjectDataController{
+public class BlobDataController extends ObjectDataController {
 	@FXML
-	TextArea blobDataText;
-	
+	Label blobName;
+
+	@FXML
+	Label blobTree;
+
 	@FXML
 	private void initialize() {
-		blobDataText.setText("c'est un Blob");
+		blobTree.setUnderline(true);
 	}
-	
-	public void setDataContent(GitObject object){
-		
+
+	public void setDataContent(GitObject object) {
+
 	}
 
 }
