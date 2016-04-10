@@ -9,28 +9,37 @@ import org.eclipse.jgit.lib.ObjectLoader;
 import org.eclipse.jgit.lib.Repository;
 
 public abstract class GitObject {
+	boolean isDeletable = true; // Indique si l'objet peut être supprimé par le
+								// garbage collector;
 	GitObject parent;
 	String hash;
 	String rawData;
 	protected GitObjectType type;
 	private RepositoryData repositoryData;
-	
-	
 
 	protected GitObject(String hash, String rawData) {
 		this.hash = hash;
 		this.rawData = rawData;
 	}
-	
+
 	abstract public void setDataContent();
-	
+
+	public boolean isDeletable() {
+		return isDeletable;
+	}
+
+	public void setDeletable(boolean isDeletable) {
+		this.isDeletable = isDeletable;
+	}
+
 	public void setRepositoryData(RepositoryData repositoryData) {
 		this.repositoryData = repositoryData;
 	}
-	
+
 	public RepositoryData getRepositoryData() {
 		return repositoryData;
 	}
+
 	public GitObject getParent() {
 		return parent;
 	}

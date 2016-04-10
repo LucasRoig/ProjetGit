@@ -18,12 +18,13 @@ import org.eclipse.jgit.lib.RepositoryBuilder;
  */
 public class RepositoryData {
 
-	Repository repository;
-	String path;
-	Hashtable<String, GitObject> objectTable = new Hashtable<>();
+	private Repository repository;
+	private File directory;
+	private Hashtable<String, GitObject> objectTable = new Hashtable<>();
 
 	/**
-	 * Instancie un objet RepositoryData et récupere les données des objets git
+	 * Instancie un objet RepositoryData et récupere les données des objets
+	 * git
 	 * 
 	 * @param path
 	 *            Le chemin du repertoire objects
@@ -34,6 +35,7 @@ public class RepositoryData {
 	}
 
 	public RepositoryData(File directory) throws IOException {
+		this.directory = directory;
 		RepositoryBuilder builder = new RepositoryBuilder();
 		builder.setMustExist(true);
 		builder.setGitDir(new File(directory.getAbsolutePath() + "/.git"));
@@ -47,6 +49,9 @@ public class RepositoryData {
 		for (GitObject object : this.getObjectList()) {
 			object.setDataContent();
 		}
+
+		GarbageCollector gc = new GarbageCollector(this);
+		gc.markAllObjects();
 	}
 
 	/**
@@ -68,12 +73,17 @@ public class RepositoryData {
 	public Collection<GitObject> getObjectList() {
 		return objectTable.values();
 	}
-	
+
 	/**
 	 * Retourne l'objet Repository de Jgit auquel correspond ce RepositoryData
+	 * 
 	 * @return
 	 */
 	public Repository getRepository() {
 		return repository;
+	}
+
+	public File getDirectory() {
+		return directory;
 	}
 }

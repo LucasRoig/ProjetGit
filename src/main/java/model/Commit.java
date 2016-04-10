@@ -105,6 +105,22 @@ public class Commit extends GitObject {
 			this.committerDate = cDate.group();
 		}
 
+		Tree tree = (Tree) this.getRepositoryData().getObjectByHash(treeId);
+		tree.setParent(this);
+		tree.setName("Commit root");
 	}
 
+	@Override
+	public void setDeletable(boolean isDeletable) {
+		super.setDeletable(isDeletable);
+		GitObject object = this.getRepositoryData().getObjectByHash(this.getTreeId());
+		object.setDeletable(isDeletable);
+
+		for (String hash : parentsList) {
+			object = this.getRepositoryData().getObjectByHash(hash);
+			if (object.isDeletable() == !isDeletable) {
+				object.setDeletable(isDeletable);
+			}
+		}
+	}
 }

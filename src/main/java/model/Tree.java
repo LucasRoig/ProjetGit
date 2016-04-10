@@ -1,9 +1,8 @@
 package model;
 
-import java.awt.print.Printable;
 import java.util.ArrayList;
 
-public class Tree extends GitObject implements hasName{
+public class Tree extends GitObject implements hasName {
 	private ArrayList<TreeEntry> treeEntriesList = new ArrayList<>();
 	private String name;
 
@@ -26,10 +25,9 @@ public class Tree extends GitObject implements hasName{
 			} else {
 				if (trad) {
 					String string = Integer.toHexString(by);
-					if (string.length() > 2){
+					if (string.length() > 2) {
 						string = string.substring(string.length() - 2);
-					}
-					else if(string.length() == 1){
+					} else if (string.length() == 1) {
 						string = "0" + string;
 					}
 					buffer.append(string);
@@ -57,9 +55,9 @@ public class Tree extends GitObject implements hasName{
 	@Override
 	public void setDataContent() {
 		for (TreeEntry treeEntry : this.getTreeEntriesList()) {
-			GitObject object =  this.getRepositoryData().getObjectByHash(treeEntry.getHash());
-			if (object != null){
-				((hasName)object).setName(treeEntry.getName());
+			GitObject object = this.getRepositoryData().getObjectByHash(treeEntry.getHash());
+			if (object != null) {
+				((hasName) object).setName(treeEntry.getName());
 				object.setParent(this);
 			}
 		}
@@ -73,5 +71,16 @@ public class Tree extends GitObject implements hasName{
 	@Override
 	public String getName() {
 		return this.name;
+	}
+
+	@Override
+	public void setDeletable(boolean isDeletable) {
+		super.setDeletable(isDeletable);
+		for (TreeEntry treeEntry : treeEntriesList) {
+			GitObject object = this.getRepositoryData().getObjectByHash(treeEntry.getHash());
+			if (object != null) {
+				object.setDeletable(isDeletable);
+			}
+		}
 	}
 }

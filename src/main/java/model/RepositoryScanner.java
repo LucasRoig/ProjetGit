@@ -10,8 +10,8 @@ import org.eclipse.jgit.internal.storage.file.PackFile;
 import org.eclipse.jgit.internal.storage.file.PackIndex.MutableEntry;
 
 /**
- * Scanne un dossier object généré par git et récupère les hash de chaque objet
- * git
+ * Scanne un dossier object généré par git et récupère les hash de chaque
+ * objet git
  * 
  * @author Bruce Baumann
  * @author Ulysse Baumann
@@ -83,7 +83,8 @@ public class RepositoryScanner implements Iterable<String> {
 	}
 
 	/**
-	 * Ajoute les hash des GitObjects étants dans des packs à la liste hashList.
+	 * Ajoute les hash des GitObjects étants dans des packs à la liste
+	 * hashList.
 	 */
 	private void readPackFiles() {
 		File repertoirePack = new File(path + "/pack");

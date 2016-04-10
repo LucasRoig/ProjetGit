@@ -13,12 +13,14 @@ public class BlobDataController extends ObjectDataController {
 	@FXML
 	private void initialize() {
 		blobTree.setUnderline(true);
-		
+
 	}
 
 	public void setDataContent(GitObject object) {
-		blobName.setText(((hasName)object).getName());
-		blobTree.setText(object.getParent().getHash());
+		blobName.setText(((hasName) object).getName());
+		GitObject parent = object.getParent();
+		if (parent != null) {
+			blobTree.setText(object.getParent().getHash());
+		}
 	}
-
 }
