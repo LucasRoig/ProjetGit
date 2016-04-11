@@ -23,8 +23,7 @@ public class RepositoryData {
 	private Hashtable<String, GitObject> objectTable = new Hashtable<>();
 
 	/**
-	 * Instancie un objet RepositoryData et récupere les données des objets
-	 * git
+	 * Instancie un objet RepositoryData et récupere les données des objets git
 	 * 
 	 * @param path
 	 *            Le chemin du repertoire objects

@@ -5,8 +5,8 @@ public class TreeEntry {
 	private String name;
 
 	/**
-	 * Construit un TreeEntry a partir de la ligne de caractères désignant
-	 * cette entrée dans le tree.
+	 * Construit un TreeEntry a partir de la ligne de caractères désignant cette
+	 * entrée dans le tree.
 	 * 
 	 * @param entryLine
 	 *            : Le String désignant l'entrée.

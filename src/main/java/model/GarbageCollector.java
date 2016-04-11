@@ -43,7 +43,7 @@ public class GarbageCollector {
 	}
 
 	/**
-	 * Marque tous les objets trouvés par le garbage collector comme n'étants
+	 * Marque tous les objets trouvés par le garbage collector comme n'étant
 	 * pas supprimables.
 	 */
 	public void markAllObjects() {

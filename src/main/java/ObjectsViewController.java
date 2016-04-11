@@ -22,7 +22,6 @@ import model.RepositoryData;
 import model.Tree;
 import model.TreeEntry;
 import model.hasName;
-import model.TreeEntry;
 
 public class ObjectsViewController {
 
@@ -109,8 +108,8 @@ public class ObjectsViewController {
 	}
 
 	/**
-	 * Génère l'arbre afficher dans l'onglet arbre, il présente le contenu du
-	 * commit contenant l'objet sélectionné.
+	 * Gï¿½nï¿½re l'arbre afficher dans l'onglet arbre, il prï¿½sente le contenu du
+	 * commit contenant l'objet sï¿½lectionnï¿½.
 	 * 
 	 * @param object
 	 *            - L'objet dont on souhaite afficher le commit.
@@ -133,7 +132,7 @@ public class ObjectsViewController {
 	}
 
 	/**
-	 * Ajoute chaque TreeEntry d'un objet Tree à un TreeItem
+	 * Ajoute chaque TreeEntry d'un objet Tree ï¿½ un TreeItem
 	 * 
 	 * @param tree
 	 *            - l'objet Tree dont on souhaite ajouter les TreeEntries.
@@ -156,7 +155,7 @@ public class ObjectsViewController {
 		GitObject object = repository.getObjectByHash(objectId);
 		objectTable.getSelectionModel().select(object);
 	}
-	
+
 	public void setSelectedObject(TreeEntry treeEntry) {
 		GitObject object = repository.getObjectByHash(treeEntry.getHash());
 		objectTable.getSelectionModel().select(object);

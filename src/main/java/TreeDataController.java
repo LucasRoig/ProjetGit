@@ -17,7 +17,7 @@ import model.hasName;
 public class TreeDataController extends ObjectDataController {
 	@FXML
 	Label treeName;
-	
+
 	@FXML
 	TableView<TreeEntry> objectTable;
 
@@ -32,7 +32,8 @@ public class TreeDataController extends ObjectDataController {
 		objectTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent click) {
 				if (click.getClickCount() == 2) {
-					MainWindowController.getObjectsViewController().setSelectedObject(objectTable.getSelectionModel().getSelectedItem());
+					MainWindowController.getObjectsViewController()
+							.setSelectedObject(objectTable.getSelectionModel().getSelectedItem());
 				}
 			}
 		});
@@ -41,16 +42,16 @@ public class TreeDataController extends ObjectDataController {
 	public void setDataContent(GitObject object) {
 		setObjectTable(((Tree) object).getTreeEntriesList());
 		treeName.setText(((hasName) object).getName());
-		
+
 	}
-	
-	public void setObjectTable(ArrayList<TreeEntry> listeChaines){
+
+	public void setObjectTable(ArrayList<TreeEntry> listeChaines) {
 		ObservableList<TreeEntry> observableList = FXCollections.observableArrayList();
 		observableList.setAll(listeChaines);
 		objectTable.setItems(observableList);
 		nameColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
-        idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHash()));
-		
+		idColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHash()));
+
 	}
 
 }

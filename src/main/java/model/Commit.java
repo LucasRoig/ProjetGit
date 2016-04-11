@@ -104,7 +104,7 @@ public class Commit extends GitObject {
 		while (cDate.find()) {
 			this.committerDate = cDate.group();
 		}
-		
+
 		GitObject object = this.getRepositoryData().getObjectByHash(treeId);
 		((hasName) object).setName("Commit Root");
 

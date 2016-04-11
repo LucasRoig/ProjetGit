@@ -16,7 +16,7 @@ public class BlobDataController extends ObjectDataController {
 	@FXML
 	private void initialize() {
 		blobTree.setUnderline(true);
-		
+
 		blobTree.setOnMouseEntered(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent enter) {
 				MainApp.getScene().setCursor(Cursor.HAND);
@@ -28,7 +28,7 @@ public class BlobDataController extends ObjectDataController {
 				MainApp.getScene().setCursor(Cursor.DEFAULT);
 			}
 		});
-		
+
 		blobTree.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent click) {
 				MainWindowController.getObjectsViewController().setSelectedObject(blobTree.getText());
