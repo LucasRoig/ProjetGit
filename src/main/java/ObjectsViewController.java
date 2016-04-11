@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import model.GitObject;
 import model.RepositoryData;
+import model.TreeEntry;
 
 public class ObjectsViewController {
 
@@ -84,6 +85,11 @@ public class ObjectsViewController {
 
 	public void setSelectedObject(String objectId) {
 		GitObject object = repository.getObjectByHash(objectId);
+		objectTable.getSelectionModel().select(object);
+	}
+	
+	public void setSelectedObject(TreeEntry treeEntry) {
+		GitObject object = repository.getObjectByHash(treeEntry.getHash());
 		objectTable.getSelectionModel().select(object);
 	}
 }

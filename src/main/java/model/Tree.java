@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.print.Printable;
 import java.util.ArrayList;
 
 public class Tree extends GitObject implements hasName{
