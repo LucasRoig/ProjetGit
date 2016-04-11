@@ -1,5 +1,8 @@
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import model.GitObject;
 import model.hasName;
 
@@ -13,7 +16,24 @@ public class BlobDataController extends ObjectDataController {
 	@FXML
 	private void initialize() {
 		blobTree.setUnderline(true);
+		
+		blobTree.setOnMouseEntered(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent enter) {
+				MainApp.getScene().setCursor(Cursor.HAND);
+			}
+		});
 
+		blobTree.setOnMouseExited(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent enter) {
+				MainApp.getScene().setCursor(Cursor.DEFAULT);
+			}
+		});
+		
+		blobTree.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent click) {
+				MainWindowController.getObjectsViewController().setSelectedObject(blobTree.getText());
+			}
+		});
 	}
 
 	public void setDataContent(GitObject object) {
