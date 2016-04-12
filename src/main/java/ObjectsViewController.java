@@ -21,7 +21,7 @@ import model.GitObjectType;
 import model.RepositoryData;
 import model.Tree;
 import model.TreeEntry;
-import model.hasName;
+import model.HasName;
 
 public class ObjectsViewController {
 
@@ -143,7 +143,7 @@ public class ObjectsViewController {
 		for (TreeEntry treeEntry : tree.getTreeEntriesList()) {
 			TreeItem<String> newNode = new TreeItem<String>();
 			GitObject object = this.repository.getObjectByHash(treeEntry.getHash());
-			newNode.setValue(((hasName) object).getName());
+			newNode.setValue(((HasName) object).getName());
 			node.getChildren().add(newNode);
 			if (object.getType() == GitObjectType.Tree) {
 				addTreeToNode((Tree) object, newNode);

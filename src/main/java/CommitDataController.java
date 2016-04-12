@@ -68,14 +68,16 @@ public class CommitDataController extends ObjectDataController {
 	}
 
 	public void setDataContent(GitObject object) {
-		setTreeId(((Commit) object).getTreeId());
-		setParentsList(((Commit) object).getParentsList());
-		String author = (((Commit) object).getCommitAuthor() + " : " + ((Commit) object).getAuthorMail());
+		// FIXME: castez votre objet 1 seule fois: cela aide à la lisibilité.
+		Commit commit = (Commit) object;
+		setTreeId(commit.getTreeId());
+		setParentsList(commit.getParentsList());
+		String author = (commit.getCommitAuthor() + " : " + commit.getAuthorMail());
 		setCommitAuthor(author);
-		setAuthorDate(((Commit) object).getAuthorDate());
-		String committer = (((Commit) object).getCommitCommitter() + " : " + ((Commit) object).getCommitterMail());
+		setAuthorDate(commit.getAuthorDate());
+		String committer = (commit.getCommitCommitter() + " : " + commit.getCommitterMail());
 		setCommitCommitter(committer);
-		setCommitterDate(((Commit) object).getCommitterDate());
+		setCommitterDate(commit.getCommitterDate());
 	}
 
 	public void setTreeId(String chaine) {

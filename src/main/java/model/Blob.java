@@ -1,6 +1,6 @@
 package model;
 
-public class Blob extends GitObject implements hasName {
+public class Blob extends GitObject implements HasName {
 	private String name;
 
 	public Blob(String hash, String rawData) {
