@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 /**
  * 
- * @author Lucas Roig Implémentation d'un garbage collector. En partant du
+ * @author Lucas Roig Implï¿½mentation d'un garbage collector. En partant du
  *         commit "HEAD" de chaque branche, le garbage collector progresse de
- *         parent en parent et indique que chaque objet trouvé ne doit pas être
- *         supprimé. Les objets qui n'ont pas été visités par cette procédure
- *         peuvent être supprimés sans risque. Les "HEAD" de chaque branches
- *         sont trouvés dans le dossier .git/refs/heads Le stash est lui dans le
+ *         parent en parent et indique que chaque objet trouvï¿½ ne doit pas ï¿½tre
+ *         supprimï¿½. Les objets qui n'ont pas ï¿½tï¿½ visitï¿½s par cette procï¿½dure
+ *         peuvent ï¿½tre supprimï¿½s sans risque. Les "HEAD" de chaque branches
+ *         sont trouvï¿½s dans le dossier .git/refs/heads Le stash est lui dans le
  *         fichier .git/refs/stash
  */
 public class GarbageCollector {
@@ -43,8 +43,8 @@ public class GarbageCollector {
 	}
 
 	/**
-	 * Marque tous les objets trouvés par le garbage collector comme n'étant
-	 * pas supprimables.
+	 * Marque tous les objets trouvï¿½s par le garbage collector comme n'ï¿½tant pas
+	 * supprimables.
 	 */
 	public void markAllObjects() {
 		for (Commit commit : commitList) {
