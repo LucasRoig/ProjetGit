@@ -4,7 +4,7 @@ import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import model.GitObject;
-import model.hasName;
+import model.HasName;
 
 public class BlobDataController extends ObjectDataController {
 	@FXML
@@ -37,7 +37,7 @@ public class BlobDataController extends ObjectDataController {
 	}
 
 	public void setDataContent(GitObject object) {
-		blobName.setText(((hasName) object).getName());
+		blobName.setText(((HasName) object).getName());
 		GitObject parent = object.getParent();
 		if (parent != null) {
 			blobTree.setText(object.getParent().getHash());

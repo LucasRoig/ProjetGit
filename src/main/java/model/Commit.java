@@ -106,7 +106,7 @@ public class Commit extends GitObject {
 		}
 
 		GitObject object = this.getRepositoryData().getObjectByHash(treeId);
-		((hasName) object).setName("Commit Root");
+		((HasName) object).setName("Commit Root");
 
 		Tree tree = (Tree) this.getRepositoryData().getObjectByHash(treeId);
 		tree.setParent(this);

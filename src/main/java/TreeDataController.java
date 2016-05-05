@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import model.GitObject;
 import model.Tree;
 import model.TreeEntry;
-import model.hasName;
+import model.HasName;
 
 public class TreeDataController extends ObjectDataController {
 	@FXML
@@ -41,7 +41,7 @@ public class TreeDataController extends ObjectDataController {
 
 	public void setDataContent(GitObject object) {
 		setObjectTable(((Tree) object).getTreeEntriesList());
-		treeName.setText(((hasName) object).getName());
+		treeName.setText(((HasName) object).getName());
 
 	}
 
