@@ -1,4 +1,4 @@
-package model;
+package core.gitobjects;
 
 public class TreeEntry {
 	private String hash;

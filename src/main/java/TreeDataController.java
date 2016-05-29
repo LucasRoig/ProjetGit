@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import core.gitobjects.HasName;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import model.GitObject;
 import model.Tree;
 import model.TreeEntry;
-import model.HasName;
 
 public class TreeDataController extends ObjectDataController {
 	@FXML

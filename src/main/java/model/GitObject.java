@@ -8,8 +8,10 @@ import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectLoader;
 import org.eclipse.jgit.lib.Repository;
 
+import core.gitobjects.GitObjectType;
+
 public abstract class GitObject {
-	boolean isDeletable = true; // Indique si l'objet peut être supprimé par le
+	boolean isDeletable = true; // Indique si l'objet peut ï¿½tre supprimï¿½ par le
 								// garbage collector;
 	GitObject parent;
 	String hash;

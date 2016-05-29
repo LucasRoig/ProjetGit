@@ -1,5 +1,7 @@
 import java.io.IOException;
 
+import core.gitobjects.GitObjectType;
+import core.gitobjects.HasName;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,11 +19,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import model.Commit;
 import model.GitObject;
-import model.GitObjectType;
 import model.RepositoryData;
 import model.Tree;
 import model.TreeEntry;
-import model.HasName;
 
 public class ObjectsViewController {
 

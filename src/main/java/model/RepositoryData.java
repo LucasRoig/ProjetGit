@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Hashtable;
+import java.util.List;
 
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.lib.RepositoryBuilder;
+
+import data.DirectoryReader;
 
 /**
  * Stock les données du repository
@@ -40,8 +43,8 @@ public class RepositoryData {
 		builder.setGitDir(new File(directory.getAbsolutePath() + "/.git"));
 		this.repository = builder.build();
 
-		RepositoryScanner scanner = new RepositoryScanner(directory.getAbsolutePath() + "/.git/objects");
-		for (String hash : scanner) {
+		List<String> hashList = DirectoryReader.readDirectory(new File(directory.getAbsolutePath() + "/.git/objects"));
+		for (String hash : hashList) {
 			GitObject object = GitObject.createGitObject(this, hash);
 			objectTable.put(hash, object);
 		}

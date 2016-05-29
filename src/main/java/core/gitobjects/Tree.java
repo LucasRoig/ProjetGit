@@ -1,15 +1,17 @@
-package model;
+package core.gitobjects;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Tree extends GitObject implements HasName {
-	private ArrayList<TreeEntry> treeEntriesList = new ArrayList<>();
-	private String name;
+import core.GitProperty;
+import core.GitProperty.PropertyType;
+import model.TreeEntry;
 
-	public Tree(String hash, byte[] b) {
+public class Tree extends AbstractGitObject implements HasName{
+	List<TreeEntry> treeEntriesList = new ArrayList<>();
+	protected Tree(String hash, byte[] b) {
 		super(hash, "");
-		this.type = GitObjectType.Tree;
-
+		this.setType(GitObjectType.Tree);
 		// Decode les données spécifiques aux trees
 		StringBuffer buffer = new StringBuffer();
 		StringBuffer lineBuffer = new StringBuffer(); // contient une seule
@@ -42,7 +44,7 @@ public class Tree extends GitObject implements HasName {
 				if (cpt <= 0) {
 					trad = false;
 					buffer.append("\n");
-					treeEntriesList.add(new TreeEntry(lineBuffer.toString()));
+					this.treeEntriesList.add(new TreeEntry(lineBuffer.toString()));
 					lineBuffer.setLength(0);
 				}
 			} else {
@@ -51,41 +53,20 @@ public class Tree extends GitObject implements HasName {
 			}
 		}
 		this.setRawData(buffer.toString());
-
-	}
-
-	public ArrayList<TreeEntry> getTreeEntriesList() {
-		return treeEntriesList;
-	}
-
-	@Override
-	public void setDataContent() {
-		for (TreeEntry treeEntry : this.getTreeEntriesList()) {
-			GitObject object = this.getRepositoryData().getObjectByHash(treeEntry.getHash());
-			if (object != null) {
-				((HasName) object).setName(treeEntry.getName());
-				object.setParent(this);
-			}
-		}
+		this.getProperties().add(new GitProperty<List<TreeEntry>>(PropertyType.TreeEntries,treeEntriesList));
 	}
 
 	@Override
 	public void setName(String name) {
-		this.name = name;
+		this.getProperties().add(new GitProperty<String>(PropertyType.Name,name));
 	}
-
 	@Override
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public void setDeletable(boolean isDeletable) {
-		super.setDeletable(isDeletable);
-		for (TreeEntry treeEntry : treeEntriesList) {
-			GitObject object = this.getRepositoryData().getObjectByHash(treeEntry.getHash());
+	public void fillData() {
+		for (TreeEntry treeEntry : this.treeEntriesList) {
+			IGitObject object = this.getRepository().getObject(treeEntry.getHash());
 			if (object != null) {
-				object.setDeletable(isDeletable);
+				((HasName) object).setName(treeEntry.getName());
+				object.setParent(this);
 			}
 		}
 	}
